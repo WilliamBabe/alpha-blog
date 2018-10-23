@@ -6,9 +6,15 @@ end
 def create
  #render plain: params[:article]
  @article = Article.new(article_params)
- @article.save
- redirect_to articles_show(@article)
-end
+ if @article.save
+   flash[:notice] = "Article was successfully created"
+   redirect_to article_path(@article)
+   else
+     render 'new'
+   end
+   end
+ #redirect_to article_path(@article)
+
 
 private
 
